@@ -11,7 +11,7 @@ const testConnection = async () => {
   try {
     await sequelize.authenticate()
     console.log("Connection to the database has been established");
-  } catch (error) {
+  } catch (error) { 
     console.log(error);
     
   }

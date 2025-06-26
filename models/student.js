@@ -15,10 +15,11 @@ const Students1 = sequelize.define("Students1", {
     type: DataTypes.STRING,
     allowNull: false
   },
-  age: {
+  email: {
     type: DataTypes.STRING,
     allowNull: false
-  }
+  },
+  // timestamps: false   
 })
 
 
