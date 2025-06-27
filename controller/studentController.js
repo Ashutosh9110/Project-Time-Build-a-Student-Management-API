@@ -16,6 +16,120 @@ const addStudent = async (req, res) => {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+// const Student = require("../models/student")
+
+
+// const addStudent = async (req, res) => {
+//   try {
+//     const { name, email } = req.body
+//     const student = await Student.create({
+//       name,
+//       email
+//     })
+//     if(!student) {
+//       console.error(error);
+//       res.status(404).json({ msg : "Student not found"})
+//     }
+//     res.status(200).json({ msg : "Student has been added"})
+//   } catch (error) {
+//     res.status(500).json({ msg: "Unable to add"}) 
+//   }
+// }
+
+
+
+
+
+
+
+
+
+// const updateStudent = async (req, res) => {
+//   try {
+//     const id = req.params.id
+//     const { name, email } = req.body
+//       const student = await Student.findByPk(id)
+//       if(!student) {
+//         res.status(404).json({ msg : "Student not found"})
+//       }
+//       student.name = name
+//       student.email = email
+//       await student.save()
+//       res.status(200).json({ msg : "User has been updated"})
+//   } catch (error) {
+//       res.status(500).json({ msg : "Unable to update the user"})
+//   }}
+
+
+const updateStudent = async (req, res) => {
+  try {
+    const id = req.params.id
+    const { name, email } = req.body
+  
+    const student = await Student.findByPk(id)
+    if(!student) {
+      res.status(404).json({ msg : "Student not found"})
+    }
+      student.name = name,
+      student.email = email
+      await student.save()
+      res.status(200).json({ msg : "Student details have been updated"})
+  } catch (error) {
+    res.status(500).json({ msg : "unable to upate the student"})
+  }
+
+}
+
+
+
+
+const deleteStudent = async (req, res) => {
+  try {
+    const id = req.params.id
+    const student = Student.destroy({
+      where: {
+        id:id
+      }
+    })
+    if(!student) {
+      res.status(404).json({ msg : "Unable to find student"})
+    }
+    res.status(200).json({ msg : "Student has been deleted"})
+  } catch (error) {
+    res.status(500).json({ msg: "Unable to delete student"})
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const getAllStudents = (req, res) => {
 
   const getAllStudentsQuery = "SELECT * FROM students"
@@ -47,40 +161,40 @@ const getStudentByID = (req, res) => {
 
 
 
-const updateStudent = async (req, res) => {
-  try {
-    const id = req.params.id
-    const { name, email } = req.body
-      const student = await Student.findByPk(id)
-      if(!student) {
-        res.status(404).json({ msg : "Student not found"})
-      }
-      student.name = name
-      student.email = email
-      await student.save()
-      res.status(200).json({ msg : "User has been updated"})
-  } catch (error) {
-      res.status(500).json({ msg : "Unable to update the user"})
-  }
-}
+// const updateStudent = async (req, res) => {
+//   try {
+//     const id = req.params.id
+//     const { name, email } = req.body
+//       const student = await Student.findByPk(id)
+//       if(!student) {
+//         res.status(404).json({ msg : "Student not found"})
+//       }
+//       student.name = name
+//       student.email = email
+//       await student.save()
+//       res.status(200).json({ msg : "User has been updated"})
+//   } catch (error) {
+//       res.status(500).json({ msg : "Unable to update the user"})
+//   }
+// }
 
 
-const deleteStudent = async (req, res) => {
-  try {
-    const id = req.params.id
-    const student = await Student.destroy({
-      where: {
-        id: id
-      }
-    })
-    if(!student) {
-      res.status(404).json({ msg : "Student not found"})
-    }
-      res.status(200).json({ msg : "Student is deleted"})
-  } catch (error) {
-    res.status(500).json({ msg : "Unable to delete the student"})
-  }  
-}
+// const deleteStudent = async (req, res) => {
+//   try {
+//     const id = req.params.id
+//     const student = await Student.destroy({
+//       where: {
+//         id: id
+//       }
+//     })
+//     if(!student) {
+//       res.status(404).json({ msg : "Student not found"})
+//     }
+//       res.status(200).json({ msg : "Student is deleted"})
+//   } catch (error) {
+//     res.status(500).json({ msg : "Unable to delete the student"})
+//   }  
+// }
 
 
 
