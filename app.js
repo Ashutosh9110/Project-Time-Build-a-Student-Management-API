@@ -5,11 +5,13 @@ require("./models")
 
 const app = express()
 const studentRouter = require("./routes/studentRoutes")
+const courseRouter = require("./routes/courseRoutes")
 
 
 app.use(express.json())
 
 app.use("/students", studentRouter)
+app.use("/courses", courseRouter)
 
 
 db.sync().then(() => {
